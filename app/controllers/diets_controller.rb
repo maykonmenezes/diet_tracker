@@ -1,5 +1,6 @@
 class DietsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_diet, only: %i[edit update destroy]
 
   layout "diet"
 
@@ -8,8 +9,9 @@ class DietsController < ApplicationController
   end
 
   def new
-    @diet = current_user.diets.new
+    @diet = Diet.new
     @diet.meals.build
+    @meal_types = MealType.all
   end
 
   def create
@@ -17,6 +19,7 @@ class DietsController < ApplicationController
     @diet.user = current_user
     binding.pry
     if @diet.save
+      flash[:notice] = "Diet saved successfully."
       redirect_to(root_path)
     else
       render :new
@@ -24,8 +27,23 @@ class DietsController < ApplicationController
   end
 
   def show
-    @diet = current_user.diets.new
-    @diet.meals.new
+    @diet = current_user.diet
+    # authorize @game
+  end
+
+  def edit
+    @meal_types = MealType.all
+  end
+
+  def update
+    # authorize @word
+    @diet.assign_attributes(diet_params)
+    set_user_for_translations(@word)
+    if @diet.save
+      redirect_to(diet_path(@diet))
+    else
+      render :edit
+    end
   end
 
   private
@@ -38,7 +56,11 @@ class DietsController < ApplicationController
         :init_weight,
         :height,
         :ideal_weight,
-        meals_attributes: %i[id meal_type description time_schedule _destroy]
+        meals_attributes: %i[id meal_type_id description time_schedule _destroy]
       )
+  end
+
+  def set_diet
+    @diet = Diet.find(params[:id])
   end
 end

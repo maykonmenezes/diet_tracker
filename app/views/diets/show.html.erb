@@ -1,0 +1,54 @@
+
+<div class="flex-1 md:p-0 lg:pt-8 lg:px-8 md:ml-24 flex flex-col">
+  <div class="md:flex mb-4">
+    <div class="md:flex-1 md:pr-3">
+      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Start date</label>
+      <%= @diet.start_date %>
+    </div>
+    <div class="md:flex-1 md:pl-3">
+      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">End date</label>
+      <%=  @diet.end_date %>
+    </div>
+  </div>
+  <div class="md:flex mb-4">
+    <div class="md:flex-1 md:pr-3">
+      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Your Height</label>
+      <%=  @diet.height %>
+    </div>
+    <div class="md:flex-1 md:pr-3">
+      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Your Actual Weight</label>
+      <%=  @diet.init_weight %>
+    </div>
+    <div class="md:flex-1 md:pl-3">
+      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Ideal Weight</label>
+      <%=  @diet.ideal_weight %>
+    </div>
+  </div>
+  <h2 class="md:w-1/3 uppercase tracking-wide text-indigo-800 font-semibold text-sm sm:text-lg mb-6">Meals</h2>
+<div id='meals'>
+  <%= @diet.meals.each do |m| %>
+  <div class='nested-fields'>
+    <div class="md:flex mb-4">
+      <div class="md:flex-1 md:pr-3">
+        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Type</label>
+        <%= MealType.find(m.meal_type_id).value   %>
+
+      </div>
+      <div class="md:flex-1 md:pr-3">
+        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Time</label>
+        <%=  m.time_schedule %>
+      </div>
+    </div>
+    <div class="md:flex mb-4">
+      <div class="md:flex-1 md:pr-3">
+        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Description</label>
+        <%=  m.description %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>
+<%= link_to('Edit diet', edit_diet_path(current_user.diet), class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+shadow-lg") %>

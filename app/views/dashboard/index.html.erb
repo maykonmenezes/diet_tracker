@@ -2,12 +2,19 @@
 xl:text-bold">Hello, <%= current_user.name %> </h4>
 <div class="mt-12">
   <div class="flex justify-between items-center">
-    <%= link_to('My diet', new_diet_path, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
-    font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
-    shadow-lg") %>
+    <% if current_user.diet.present? %>
+      <%= link_to('My diet', edit_diet_path(current_user.diet), class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+      font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+      shadow-lg") %>
+    <% else %>
+      <%= link_to('New diet', new_diet_path, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+      font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+      shadow-lg") %>
+    <% end %>
     <%= link_to('Check weight', root_path, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
     font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
     shadow-lg") %>
+
   </div>
   <div class="flex justify-between items-center mt-1">
 

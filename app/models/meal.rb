@@ -1,5 +1,6 @@
 class Meal < ApplicationRecord
   belongs_to :diet
+  has_one :meal_type
 
-  validates :meal_type, :time_schedule, :description, presence: true
+  validates :time_schedule, :description, presence: true
 end
