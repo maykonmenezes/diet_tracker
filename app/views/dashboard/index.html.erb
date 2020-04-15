@@ -1,0 +1,61 @@
+<h4 class="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
+xl:text-bold">Hello, <%= current_user.name %> </h4>
+<div class="mt-12">
+  <div class="flex justify-between items-center">
+    <%= link_to('My diet', new_diet_path, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+    font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+    shadow-lg") %>
+    <%= link_to('Check weight', destroy_user_session_path, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+    font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+    shadow-lg", method: :delete) %>
+  </div>
+  <div class="flex justify-between items-center mt-1">
+
+  </div>
+  <div class="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
+     You can Logout here! <%= link_to('Logout', destroy_user_session_path, class: "cursor-pointer text-indigo-600 hover:text-indigo-800", method: :delete) %>
+  </div>
+</div>
+
+<% content_for :left do %>
+  <div class="hidden lg:flex items-center justify-center bg-indigo-100 flex-1 h-screen">
+    <div class="">
+      <h4 class="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
+      xl:text-bold">Your Progress </h2>
+      <br>
+    </div>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <title>Chart.js demo</title>
+            <!-- import plugin script -->
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+        </head>
+        <body>
+            <!-- line chart canvas element -->
+            <canvas id="buyers" width="1000" height="400"></canvas>
+            <script>
+                // line chart data
+                var buyerData = {
+                    labels : ["January","February","March","April","May","June"],
+                    datasets : [
+                    {
+                        fillColor : "#5A67D8",
+                        strokeColor : "#ACC26D",
+                        pointColor : "#fff",
+                        pointStrokeColor : "#9DB86D",
+                        data : [103,96,99,80,75,70],
+                        minValue : 0
+                    }
+                ]
+                }
+                // get line chart canvas
+                var buyers = document.getElementById('buyers').getContext('2d');
+                // draw line chart
+                new Chart(buyers).Line(buyerData);
+
+            </script>
+        </body>
+        </html>
+      </div>
+<% end %>

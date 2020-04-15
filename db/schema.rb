@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_150705) do
+ActiveRecord::Schema.define(version: 2020_04_15_124449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "diets", force: :cascade do |t|
-    t.date "start"
-    t.date "end"
+    t.date "start_date"
+    t.date "end_date"
     t.float "init_weight"
     t.float "ideal_weight"
     t.bigint "user_id", null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_150705) do
   end
 
   create_table "meals", force: :cascade do |t|
-    t.string "type"
+    t.string "meal_type"
     t.time "time_schedule"
     t.text "description"
     t.bigint "diet_id", null: false
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2020_04_11_150705) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
