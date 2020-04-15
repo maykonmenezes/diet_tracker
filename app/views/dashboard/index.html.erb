@@ -5,9 +5,9 @@ xl:text-bold">Hello, <%= current_user.name %> </h4>
     <%= link_to('My diet', new_diet_path, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
     font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
     shadow-lg") %>
-    <%= link_to('Check weight', destroy_user_session_path, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+    <%= link_to('Check weight', root_path, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
     font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
-    shadow-lg", method: :delete) %>
+    shadow-lg") %>
   </div>
   <div class="flex justify-between items-center mt-1">
 

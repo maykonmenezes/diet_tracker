@@ -29,8 +29,7 @@
                       <div class="text-2xl text-indigo-800 tracking-wide ml-2 font-semibold">dietracker</div>
                   </div>
               </div>
-              <p class="notice text-2xl text-indigo-500 tracking-wide ml-2 font-semibold flex justify-center"><%= notice %></p>
-              <p class="alert text-2xl text-indigo-500 tracking-wide ml-2 font-semibold flex justify-center"><%= alert %></p>
+              <%= render 'shared/messages' %>
               <%= yield %>
           </div>
           <%= yield(:left) %>
