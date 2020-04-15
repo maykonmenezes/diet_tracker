@@ -18,7 +18,15 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 
+gem 'nested_form'
+
+gem 'simple_form'
+
+gem "cocoon"
+
 gem 'devise'
+
+gem 'pry'
 
 gem 'devise-i18n'
 
