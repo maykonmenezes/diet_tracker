@@ -22,6 +22,8 @@ gem 'nested_form'
 
 gem 'simple_form'
 
+gem "pundit"
+
 gem "cocoon"
 
 gem 'devise'

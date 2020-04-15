@@ -1,6 +1,7 @@
 class DietsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_diet, only: %i[edit update destroy]
+  before_action :access?
 
   layout "diet"
 
@@ -65,5 +66,9 @@ class DietsController < ApplicationController
   def set_weight
     weight = Weight.new(value: params[:init_weight])
     weight.save
+  end
+
+  def access?
+    authorize @diet
   end
 end

@@ -1,5 +1,6 @@
 class WeightsController < ApplicationController
   before_action :authenticate_user!
+  before_action :access?
 
   layout "diet"
 
@@ -22,5 +23,9 @@ class WeightsController < ApplicationController
 
   def weight_params
     params.require(:weight).permit(:value)
+  end
+
+  def access?
+    authorize @diet
   end
 end
