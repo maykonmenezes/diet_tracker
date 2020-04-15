@@ -11,7 +11,7 @@ xl:text-bold">Hello, <%= current_user.name %> </h4>
       font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
       shadow-lg") %>
     <% end %>
-    <%= link_to('Check weight', root_path, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+    <%= link_to('Check weight', new_weight_path, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
     font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
     shadow-lg") %>
 
@@ -44,15 +44,15 @@ xl:text-bold">Hello, <%= current_user.name %> </h4>
             <script>
                 // line chart data
                 var buyerData = {
-                    labels : ["January","February","March","April","May","June"],
-                    datasets : [
-                    {
-                        fillColor : "#5A67D8",
-                        strokeColor : "#ACC26D",
-                        pointColor : "#fff",
-                        pointStrokeColor : "#9DB86D",
-                        data : [103,96,99,80,75,70],
-                        minValue : 0
+                  labels : <%= @dates %>,
+                  datasets : [
+                  {
+                      fillColor : "#5A67D8",
+                      strokeColor : "#ACC26D",
+                      pointColor : "#fff",
+                      pointStrokeColor : "#9DB86D",
+                      data : <%= @weight_data %> ,
+                      minValue : 0
                     }
                 ]
                 }

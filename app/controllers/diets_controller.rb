@@ -17,8 +17,8 @@ class DietsController < ApplicationController
   def create
     @diet = Diet.new(diet_params)
     @diet.user = current_user
-    binding.pry
     if @diet.save
+      set_weight
       flash[:notice] = "Diet saved successfully."
       redirect_to(root_path)
     else
@@ -28,7 +28,6 @@ class DietsController < ApplicationController
 
   def show
     @diet = current_user.diet
-    # authorize @game
   end
 
   def edit
@@ -36,10 +35,9 @@ class DietsController < ApplicationController
   end
 
   def update
-    # authorize @word
     @diet.assign_attributes(diet_params)
-    set_user_for_translations(@word)
     if @diet.save
+      set_weight
       redirect_to(diet_path(@diet))
     else
       render :edit
@@ -62,5 +60,10 @@ class DietsController < ApplicationController
 
   def set_diet
     @diet = Diet.find(params[:id])
+  end
+
+  def set_weight
+    weight = Weight.new(value: params[:init_weight])
+    weight.save
   end
 end

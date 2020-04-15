@@ -1,0 +1,18 @@
+<%= simple_form_for @weight do |f| %>
+  <h4 class="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
+  xl:text-bold">Enter your weight</h2>
+  <div class="mt-12">
+    <div class="flex justify-between items-center">
+      <%= f.button :submit, class: "bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+      font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+      shadow-lg" %>
+      <%= f.text_field :value, autofocus: true, placeholder: "64.9", class: "w-full p-4 border-0" %>
+    </div>
+    <div class="flex justify-between items-center mt-1">
+
+    </div>
+    <div class="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
+       You can Logout here! <%= link_to('Logout', destroy_user_session_path, class: "cursor-pointer text-indigo-600 hover:text-indigo-800", method: :delete) %>
+    </div>
+  </div>
+<% end %>

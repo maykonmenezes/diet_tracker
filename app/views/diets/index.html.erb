@@ -37,15 +37,15 @@ xl:text-bold">Hello, <%= current_user.name %> </h2>
             <script>
                 // line chart data
                 var buyerData = {
-                    labels : ["January","February","March","April","May","June"],
-                    datasets : [
-                    {
-                        fillColor : "#5A67D8",
-                        strokeColor : "#ACC26D",
-                        pointColor : "#fff",
-                        pointStrokeColor : "#9DB86D",
-                        data : [103,96,99,80,75,70],
-                        minValue : 0
+                  labels : <%= @weighting_dates %>,
+                  datasets : [
+                  {
+                      fillColor : "#5A67D8",
+                      strokeColor : "#ACC26D",
+                      pointColor : "#fff",
+                      pointStrokeColor : "#9DB86D",
+                      data : <%= @weight_data %> ,
+                      minValue : 0
                     }
                 ]
                 }
