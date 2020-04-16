@@ -51,11 +51,9 @@ RSpec.describe DietsController do
       before { sign_in(user) }
 
       context 'valid params' do
-        let!(:start_date) { DateTime.new }
-        let!(:start_end) { DateTime.new }
         let(:params) do
           { diet: { init_weight: 89, ideal_weight: 76, height: 89,
-            start_date: start_date, end_date: end_date } }
+            start_date: Time.now, end_date: Time.now } }
         end
 
         it 'creates a new diet' do
@@ -68,21 +66,21 @@ RSpec.describe DietsController do
         end
 
         context 'when some meal is present' do
-          let!(:meal) { create(:meal) }
+          let!(:meal_type) { create(:meal_type) }
           let(:params) do
             { diet:
               {
                 init_weight: 78,
                 ideal_weight: 87,
-                start_date: start_date,
-                end_date: end_date,
+                start_date: Time.now,
+                end_date: Time.now,
                 height: 78,
                 meals_attributes:
                   {
                     '1541932687026' =>
                     {
-                      time_schedule: DateTime.new,
-                      meal_type_id: 1,
+                      time_schedule: Time.now,
+                      meal_type_id: meal_type.id,
                       description: 'description',
                       _destroy: false
                     }
@@ -97,7 +95,12 @@ RSpec.describe DietsController do
 
           it 'creates a meal for last diet' do
             subject
-            expect(Meal.first.reload.translations.count).to eq(1)
+            expect(Meal.all.reload.count).to eq(1)
+          end
+
+          it 'creates a weight for the user' do
+            subject
+            expect(Weight.all.reload.count).to eq(1)
           end
         end
       end
@@ -120,11 +123,9 @@ RSpec.describe DietsController do
 
     context 'when user is NOT signed in' do
       context 'valid params' do
-        let!(:start_date) { DateTime.new }
-        let!(:end_date) { DateTime.new }
         let(:params) do
           { diet: { init_weight: 89, ideal_weight: 76, height: 89,
-            start_date: start_date, end_date: end_date } }
+            start_date: Time.now, end_date: Time.now } }
         end
 
         it 'does not create a new diet' do
@@ -155,19 +156,25 @@ RSpec.describe DietsController do
   end
 
   describe 'GET show' do
-    before { get :show, params: params }
+    context 'when user is signed in' do
+      let(:user) { create(:user) }
 
-    let(:params) do
-      { id: diet.id }
-    end
-    let!(:diet) { create(:diet) }
+      before { sign_in(user) }
 
-    it 'assigns @diet' do
-      expect(assigns(:diet)).to eq(diet)
-    end
+      before { get :show, params: params }
 
-    it 'renders the new template' do
-      expect(response).to render_template(:show)
+      let(:params) do
+        { id: diet.id }
+      end
+      let!(:diet) { create(:diet) }
+
+      it 'assigns @diet' do
+        expect(assigns(:diet)).to eq(user.diet)
+      end
+
+      it 'renders the new template' do
+        expect(response).to render_template(:show)
+      end
     end
   end
 

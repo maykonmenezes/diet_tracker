@@ -15,7 +15,7 @@ class DietsController < ApplicationController
     @diet = Diet.new(diet_params)
     @diet.user = current_user
     if @diet.save
-      set_weight
+      set_weight(@diet.init_weight)
       flash[:notice] = "Diet saved successfully."
       redirect_to(root_path)
     else
@@ -34,7 +34,7 @@ class DietsController < ApplicationController
   def update
     @diet.assign_attributes(diet_params)
     if @diet.save
-      set_weight
+      set_weight(@diet.init_weight)
       redirect_to(diet_path(@diet))
     else
       render :edit
@@ -59,8 +59,8 @@ class DietsController < ApplicationController
     @diet = Diet.find(params[:id])
   end
 
-  def set_weight
-    weight = Weight.new(value: params[:init_weight])
+  def set_weight(value)
+    weight = Weight.new(value: value, user: current_user)
     weight.save
   end
 

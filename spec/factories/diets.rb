@@ -3,7 +3,8 @@ FactoryBot.define do
     init_weight { 89 }
     ideal_weight { 69 }
     height { 1.45 }
-    start_date { DateTime.new }
-    end_date { DateTime.new }
+    start_date { Time.now }
+    end_date { Time.now }
+    user
   end
 end
