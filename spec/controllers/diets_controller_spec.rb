@@ -68,7 +68,7 @@ RSpec.describe DietsController do
         end
 
         context 'when some meal is present' do
-          let!(:meal) { create(:language) }
+          let!(:meal) { create(:meal) }
           let(:params) do
             { diet:
               {
@@ -95,7 +95,7 @@ RSpec.describe DietsController do
             expect { subject }.to change(Diet, :count).from(0).to(1)
           end
 
-          it 'creates a meal for last word' do
+          it 'creates a meal for last diet' do
             subject
             expect(Meal.first.reload.translations.count).to eq(1)
           end
@@ -162,7 +162,7 @@ RSpec.describe DietsController do
     end
     let!(:diet) { create(:diet) }
 
-    it 'assigns @word' do
+    it 'assigns @diet' do
       expect(assigns(:diet)).to eq(diet)
     end
 
@@ -176,7 +176,7 @@ RSpec.describe DietsController do
 
     context 'when user is signed in' do
       let(:user) { create(:user) }
-      let(:params) { { id: word.id } }
+      let(:params) { { id: diet.id } }
       let!(:diet) { create(:diet, user: user) }
 
       before do
@@ -185,7 +185,7 @@ RSpec.describe DietsController do
       end
 
       it 'assigns @diet' do
-        expect(assigns(:diet)).to eq(word)
+        expect(assigns(:diet)).to eq(diet)
       end
 
       it 'renders the edit template' do
@@ -202,7 +202,7 @@ RSpec.describe DietsController do
       let(:params) { { id: diet.id } }
       let!(:diet) { create(:diet) }
 
-      it 'does not assigns @word' do
+      it 'does not assigns @diet' do
         expect(assigns(:diet)).to eq(nil)
       end
 

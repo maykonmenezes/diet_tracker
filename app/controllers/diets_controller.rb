@@ -1,7 +1,7 @@
 class DietsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_diet, only: %i[edit update destroy]
-  before_action :access?
+  before_action :set_diet, only: %i[edit update]
+  before_action :access?, only: %i[edit update]
 
   layout "diet"
 

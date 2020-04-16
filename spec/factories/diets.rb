@@ -5,6 +5,5 @@ FactoryBot.define do
     height { 1.45 }
     start_date { DateTime.new }
     end_date { DateTime.new }
-    meal
   end
 end

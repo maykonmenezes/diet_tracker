@@ -40,10 +40,10 @@ xl:text-bold">Hello, <%= current_user.name %> </h4>
         </head>
         <body>
             <!-- line chart canvas element -->
-            <canvas id="buyers" width="1000" height="400"></canvas>
+            <canvas id="weights" width="1000" height="400"></canvas>
             <script>
                 // line chart data
-                var buyerData = {
+                var weightsData = {
                   labels : <%= @dates.to_json.html_safe %>,
                   datasets : [
                   {
@@ -57,9 +57,9 @@ xl:text-bold">Hello, <%= current_user.name %> </h4>
                 ]
                 }
                 // get line chart canvas
-                var buyers = document.getElementById('buyers').getContext('2d');
+                var weights = document.getElementById('weights').getContext('2d');
                 // draw line chart
-                new Chart(buyers).Line(buyerData);
+                new Chart(weights).Line(weightsData);
 
             </script>
         </body>
