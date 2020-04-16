@@ -1,6 +1,5 @@
 class WeightsController < ApplicationController
   before_action :authenticate_user!
-  before_action :access?
 
   layout "diet"
 
@@ -26,6 +25,6 @@ class WeightsController < ApplicationController
   end
 
   def access?
-    authorize @diet
+    authorize @weight
   end
 end

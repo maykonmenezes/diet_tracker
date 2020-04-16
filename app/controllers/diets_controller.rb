@@ -5,10 +5,6 @@ class DietsController < ApplicationController
 
   layout "diet"
 
-  def index
-    @diets = Diet.where(user: current_user)
-  end
-
   def new
     @diet = Diet.new
     @diet.meals.build

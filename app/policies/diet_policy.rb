@@ -6,10 +6,6 @@ class DietPolicy
     @diet = diet
   end
 
-  def access?
-    diet_belongs_to_user?
-  end
-
   def new?
     diet_belongs_to_user?
   end

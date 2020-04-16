@@ -44,7 +44,7 @@ xl:text-bold">Hello, <%= current_user.name %> </h4>
             <script>
                 // line chart data
                 var buyerData = {
-                  labels : <%= @dates %>,
+                  labels : <%= @dates.to_json.html_safe %>,
                   datasets : [
                   {
                       fillColor : "#5A67D8",

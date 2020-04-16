@@ -6,11 +6,7 @@ class WeightPolicy
     @weight = weight
   end
 
-  def new?
-    weight_belongs_to_user?
-  end
-
-  def create?
+  def access?
     weight_belongs_to_user?
   end
 
