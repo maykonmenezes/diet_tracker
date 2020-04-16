@@ -1,15 +1,39 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the WeightHelper. For example:
-#
-# describe WeightHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe WeightHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#weighting_dates' do
+    context 'when some weights are present' do
+      let(:user) { create(:user) }
+      let!(:weight) { create(:weight, user: user) }
+
+      it 'returns the weighting_dates' do
+        expect(WeightHelper::weighting_dates(user)).to eq([weight.created_at.to_formatted_s(:short)])
+      end
+    end
+
+    context 'does no return any dates' do
+      let(:user) { create(:user) }
+      it 'assigns @dates' do
+        expect(WeightHelper::weighting_dates(user)).to eq([])
+      end
+    end
+  end
+
+  describe '#weights' do
+    context 'when some weights are present' do
+      let(:user) { create(:user) }
+      let!(:weight) { create(:weight, user: user) }
+
+      it 'returns the weighting_dates' do
+        expect(WeightHelper::weights(user)).to eq([weight.value])
+      end
+    end
+
+    context 'does no return any dates' do
+      let(:user) { create(:user) }
+      it 'assigns @dates' do
+        expect(WeightHelper::weights(user)).to eq([])
+      end
+    end
+  end
 end

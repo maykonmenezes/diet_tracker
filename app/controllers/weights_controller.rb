@@ -23,8 +23,4 @@ class WeightsController < ApplicationController
   def weight_params
     params.require(:weight).permit(:value)
   end
-
-  def access?
-    authorize @weight
-  end
 end
